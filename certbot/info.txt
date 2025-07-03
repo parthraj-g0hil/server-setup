@@ -1,0 +1,144 @@
+Introduction: Securing your website with SSL/TLS certificates has become essential in today’s digital landscape. Let’s Encrypt, a free and open Certificate Authority (CA), provides an easy and automated way to obtain SSL certificates. In this guide, we will walk you through the process of setting up Let’s Encrypt SSL certificates for your Nginx web server, including detailed explanations and commands.
+
+
+
+nginx
+
+Installing Certbot
+
+sudo apt-get install certbot
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d website_name.com
+
+
+
+Certbot will automatically verify your domain ownership and configure Nginx with the necessary SSL settings. If successful, the certificate and private key will be stored in /etc/letsencrypt/live/yourdomain.com/
+
+
+
+Configuring Nginx for SSL: Now that you have the SSL certificate, you need to configure Nginx to use it. Open your Nginx configuration file (/etc/nginx/nginx.conf or /etc/nginx/sites-available/yourdomain.com) and make the following changes:
+
+server {
+   listen 80;
+   server_name yourdomain.com;
+   return 301 https://$host$request_uri;
+}
+
+server {
+   listen 443 ssl;
+   server_name yourdomain.com;
+
+   ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+   ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+
+   # Other SSL configuration options (e.g., preferred ciphers, protocols, etc.)
+   ...
+
+   location / {
+       # Your website configuration
+       ...
+   }
+}
+
+
+
+
+sudo service nginx restart
+
+
+Automating Certificate Renewal: Let’s Encrypt certificates have a validity of 90 days. To ensure uninterrupted SSL protection, automating the certificate renewal process is essential. Certbot provides a renew command that you can schedule to run periodically.
+
+
+To add a renewal cron job, open the crontab editor:
+
+crontab -e
+
+Add the following line to run the renewal check daily:
+0 0 * * * certbot renew --nginx --quiet
+
+
+
+
+
+Apache 
+
+Install Apache
+
+
+sudo apt install apache2
+
+sudo systemctl stop apache2.service
+sudo systemctl start apache2.service
+
+sudo systemctl enable apache2.service
+
+
+
+Go to /etc/apache2/sites-available/ and create domain.com.conf.
+
+
+
+
+<VirtualHost *:80>
+DocumentRoot /var/www/html
+ServerName <DOMAIN_NAME>.com
+ServerAlias www.<DOMAIN_NAME>.com
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+This is domain.com-le-ssl.conf file.
+
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+DocumentRoot /var/www/html
+ServerName <DOMAIN_NAME>.com
+ServerAlias www.<DOMAIN_NAME>.com
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+Include /etc/letsencrypt/options-ssl-apache.conf
+SSLCertificateFile /etc/letsencrypt/live/<DOMAIN_NAME>.com/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/<DOMAIN_NAME>.com/privkey.pem
+</VirtualHost>
+</IfModule>
+
+
+
+000-default is a default preinstalled virtual host for apache2. Disable the default preinstalled virtual host using below command.
+
+sudo a2dissite 000-default
+
+Enable new domain.com.conf
+
+sudo a2ensite domain.com.conf
+
+
+Installing certbot 
+
+sudo apt install certbot python3-certbot-apache
+
+
+sudo certbot --apache
+
+
+(To check the status of this service and make sure it’s active and running, you can use below command.)
+
+
+sudo systemctl status certbot.timer
+
+(we can view all the systemctl timers like this.)
+sudo systemctl list-timers
+
+For xyz domain 
+sudo certbot --apache -d vitely.com -d www.vitely.com
+
+
+
+(To test the renewal process, you can do a dry run with certbot like this.)
+sudo certbot renew --dry-run
+
+
+
+
+

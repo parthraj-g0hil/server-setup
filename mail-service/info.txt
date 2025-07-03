@@ -1,0 +1,11 @@
+wget https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/Packages/mailx-12.5-29.el8.x86_64.rpm
+
+yum localinstall mailx-12.5-29.el8.x86_64.rpm
+
+yum install nss-tools
+
+yum install bc
+
+cd /apps/services/
+
+sh check-all-service.sh

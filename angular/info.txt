@@ -1,0 +1,22 @@
+We have two ways to update your application to the latest version:
+
+Use the ng update command of the Angular CLI
+Use nx migate command of the Nx monorepo tool
+
+
+1. Update your Angular CLI.
+npm install -g @angular/cli@17
+
+
+2. Update your Angular core packages.
+ng update @angular/core
+
+
+
+3. Update your other Angular packages.
+ng update @angular/material
+
+
+
+Link - https://www.techiediaries.com/upgrade-angular-to-v17/
+

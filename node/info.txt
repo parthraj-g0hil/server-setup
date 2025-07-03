@@ -1,0 +1,75 @@
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# or
+
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+
+
+
+
+
+
+
+
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+
+
+
+
+
+
+
+
+
+source ~/.bashrc
+
+
+
+
+nvm -v
+
+
+nvm ls-remote
+nvm install vX.Y.Z
+nvm use vA.B.C
+
+
+nvm alias default 18.16.1
+nvm uninstall <node_version>    // Uninstall a specific Node version
+
+nvm uninstall --lts             // Uninstall the latest LTS release of Node
+
+nvm uninstall node              // Uninstall latest (Current) release of Node
+
+
+
+
+
+
+
+
+
+
+
+
+
+Link - https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
+
+
+Link - https://gist.github.com/chranderson/b0a02781c232f170db634b40c97ff455
+
+
+
+ ln -s /root/.nvm/versions/node/v20.18.1/bin/node /usr/bin/node 
+   ln -s /root/.nvm/versions/node/v20.18.1/bin/npm /usr/bin/npm
+   unlink /usr/bin/npm
+   ln -s /root/.nvm/versions/node/v20.18.1/bin/npm /usr/bin/npm
+   ln -s /root/.nvm/versions/node/v20.18.1/bin/pm2 /usr/bin/pm2
+

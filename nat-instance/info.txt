@@ -1,0 +1,57 @@
+Nat instance 
+
+step:1
+
+
+# Turning on IP Forwarding
+echo "net.ipv4.ip_forward = 1" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+
+# Making a catchall rule for routing and masking the private IP
+sudo iptables -t nat -A POSTROUTING -o ens5 -s 0.0.0.0/0 -j MASQUERADE
+
+
+step:2
+
+Testing
+	tracepath 8.8.8.8
+
+
+Importance 
+Add routing in vpc private subnets 
+
+
+
+
+Importantcommand to use 
+sudo iptables -t nat -L POSTROUTING -v -n
+
+sudo iptables-save > /etc/sysconfig/iptables
+
+sudo iptables-save -t nat > /etc/sysconfig/iptables-nat
+
+
+iptables -t nat -A POSTROUTING -o ens5 -s 0.0.0.0/0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -s 0.0.0.0/0 -j MASQUERADE
+yum install iptables-persistent
+iptables-save > /etc/sysconfig/iptables
+systemctl enable iptables
+vi /etc/sysctl.conf
+cat /etc/sysconfig/iptables
+clear
+nano /etc/rc.local
+chmod +x /etc/rc.local
+reboot
+clear
+iptables -L -t nat
+exit
+
+
+
+
+
+
+
+
+
+

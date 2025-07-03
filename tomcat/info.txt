@@ -1,0 +1,23 @@
+sudo apt update
+
+Check the java version and enter the headless command
+sudo apt install openjdk-11-jre-headless
+
+
+Check the availability of the tomcat package
+sudo apt-cache search tomcat
+
+
+Install Apache Tomcat Server on Ubuntu 22.04
+sudo apt install tomcat10 tomcat10-admin
+
+Check the ports for Apache tomcat server
+ss -ltn
+
+
+Test working of Apache Tomcat Server
+http://(your instance ip):8080
+
+
+
+

@@ -1,0 +1,43 @@
+update-alternatives --config java
+update-alternatives --config javac
+
+alternatives --config java
+
+Yum install java-21
+
+
+Documents to follow 
+Link 1 
+
+:https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora
+
+
+
+Link 2
+
+https://developers.redhat.com/blog/2018/12/10/install-java-rhel8#finding_available_java_packages
+
+
+Link 3 
+
+https://tecadmin.net/install-latest-java-on-centos/
+
+
+Link 4
+
+https://docs.datastax.com/en/jdk-install/doc/jdk-install/installOracleJdkRHEL.html
+
+
+Link 5 
+
+https://www.tecmint.com/install-java-jdk-jre-in-linux/
+
+
+
+Link 6 
+
+https://www.linuxtechi.com/how-to-install-java-on-rhel-9/
+
+
+
+

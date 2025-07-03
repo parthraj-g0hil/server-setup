@@ -1,0 +1,35 @@
+sudo npm install pm2 -g
+
+pm2 start app.js
+pm2 start /var/www/mysite3/index.js --name mysite3
+
+Managing processes
+$ pm2 restart app_name
+$ pm2 reload app_name
+$ pm2 stop app_name
+$ pm2 delete app_name
+
+
+List managed applications
+$ pm2 [list|ls|status]
+
+
+
+Display logs
+$ pm2 logs
+$ pm2 logs --lines 200
+
+
+
+Terminal Based Dashboard
+$ pm2 monit
+
+
+
+
+pm2.io: Monitoring & Diagnostic Web Interface
+
+$ pm2 plus
+
+
+
